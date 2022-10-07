@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <style>
+            a.nav {
+                text-decoration: none;
+                font-size: 20pt;
+                padding-left: 10pt;
+                padding-right: 10pt;
+            }
+
+            div {
+                text-align: center;
+                font-size: 10pt;
+                display: inline-block;
+                width: auto;
+                margin-bottom: 20px;
+            }
+
+            .count_selector {
+                padding-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            Images per page:
+            {% for count in count_per_page %}
+            {% if count.current %}
+                <b class="count_selector">{{ count.count }}</b>
+            {% else %}
+                <a class="count_selector" href="/show?ifrom={{ current_ifrom }}&count={{ count.count }}">{{ count.count }}</a>
+            {% endif %}
+            {% endfor %}
+
+        </p>
+
+        <p>
+            {% if first.show %}
+            <a class="nav" href="/show?ifrom=0&count={{ current_count }}">&lt;&lt;</a>
+            {% endif %}
+
+            {% if prev.show %}
+            <a class="nav" href="/show?ifrom={{ prev.ifrom }}&count={{ current_count }}">&lt;</a>
+            {% endif %}
+
+            {% if next.show %}
+            <a class="nav" href="/show?ifrom={{ next.ifrom }}&count={{ current_count }}">&gt;</a>
+            {% endif %}
+
+            {% if last.show %}
+            <a class="nav" href="/show?ifrom={{ last.ifrom }}&count={{ current_count }}">&gt;&gt;</a>
+            {% endif %}
+        </p>
+
+        {% for im in images %}
+        <span><div><a target="_blank" href="images/{{ im.name }}"><img src="thumbs/{{ im.name }}"></a><br>{{ im.name }}<br>{{ im.size }}</div></span>
+        {% endfor %}
+    </body>
+</html>
