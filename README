@@ -1,0 +1,12 @@
+This is a demonstration of a simple web gallery.
+
+Setup:
+
+mkdir images thumbs
+<copy your images into the images directory>
+python3 resize.py  # will shrink all images and put them to thumbs
+python3 server.py  # starts a flask server
+
+The gallery should be available at http://127.0.0.1:5000/show. It should be
+possible to add a new image to images/ directory and it should be automatically
+resized and will show up in the gallery (after a refresh).
